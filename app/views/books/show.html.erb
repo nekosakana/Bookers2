@@ -1,0 +1,93 @@
+<%= render 'books/header' %>
+
+<div class="body">
+<div class="container">
+	<p id="notice"><%=  notice %></p>
+<div class="row">
+	<div class="col-xs-3">
+		<h2>User info</h2>
+		<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback:"henohenomoheji_mark.png",size:'60x60' %><br>
+		<table class="table"><br>
+			<tbody><br>
+				<tr>
+					<th>name</th>
+					<th><%= @user.name %></th>
+				</tr>
+				<tr>
+					<th>introduction</th>
+					<th><%= @user.introduction %></th>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row">
+		<% if @user.id == current_user.id %>
+		<%= link_to edit_user_path(current_user.id) do %>
+			<button class="col-xs-12 btn btn-default btn-block"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
+            <% end %>
+		<% end %>
+		</div>
+
+		<h2>New book</h2>
+
+		<%= form_for(@book1) do |f| %>
+		<div class="field row">
+		<h4>Title</h4>
+		<%= f.text_field :title %><br>
+		</div>
+
+		<div class="field row">
+		<h4>Opinion</h4>
+		<%= f.text_area :body %><br>
+		</div>
+
+		<div class="actions row">
+		<%= f.submit 'Create Book', class: "btn btn-default" %><br>
+		</div>
+		<% end %>
+
+	</div>
+	<div class="col-xs-9">
+		<h2>Book detail</h2>
+		<table class="table table-hover table-inverse">
+			<thead>
+				<tr>
+					<th>user</th>
+					<th>Title</th>
+					<th>Opinion</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= link_to user_path(@user.id) do %>
+						<%= attachment_image_tag @book2.user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback:"henohenomoheji_mark.png",size:'60x60' %><br>
+							<% end %>
+							<br>
+						<%= link_to @book2.user.name,user_path(@user.id) %><br>
+						</td>
+						<br>
+					<td><%= link_to @book2.title, book_path(@book2.id) %></td>
+					<td><%= @book2.body %></td>
+
+					<% if @book2.user == current_user %>
+
+					<td><%= link_to "Edit", edit_book_path(@book2), class: "btn btn-default" %></td>
+					<td><%= link_to "Destroy", book_path(@book2), class: "btn btn-default", method: :delete %></td>
+
+					<% end %>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+</div>
+
+<footer>
+  <div class="container">
+  	<div class="row">
+    	<div class="col-xs-3 col-xs-offset-9">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+</footer>

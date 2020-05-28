@@ -1,0 +1,58 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+	<div class="container">
+<nav class="nav navbar-nav navbar-left">
+	<h3>Bookers</h3>
+</nav>
+<nav>
+	<ul class="nav navbar-nav navbar-right">
+		<% if user_signed_in? %>
+		<li>
+			<%= link_to user_path(current_user.id) do %>
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home
+			<% end %>
+		</li>
+		<li>
+			<%= link_to "/users" do %>
+			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			Users
+			<% end %>
+		</li>
+		<li>
+			<%= link_to "/books" do %>
+			<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+			Books
+			<% end %>
+		</li>
+		<li>
+			<%= link_to destroy_user_session_path, method: :delete do %>
+			<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+			logout
+			<% end %>
+		</li>
+		<% else %>
+		<li>
+			<%= link_to root_path do %><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home<% end %>
+		</li>
+		<li>
+			<%= link_to "/home/about" do %>
+			<span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+			About
+			<% end%>
+		</li>
+		<li>
+			<%= link_to  "/users/sign_up" do %>
+			<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+			Sign up
+			<% end %>
+		</li>
+		<li>
+			<%= link_to "/users/sign_in" do %>
+			<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+			Login
+			<% end %>
+		</li>
+		<% end %>
+	</ul>
+</nav>
+</div>
+</header>
